@@ -1,16 +1,15 @@
--- Selects the band name and calculates the lifespan in years for Glam rock bands
+-- Create a temporary table to store band names and their lifespan
+CREATE TEMPORARY TABLE IF NOT EXISTS temp_band_lifespan AS
+    SELECT
+        band_name,
+        -- Calculate the lifespan in years until 2022
+        ROUND(DATEDIFF(IFNULL(split, '2022-01-01'), CONCAT(formed, '-01-01')) / 365, 2) AS lifespan
+    FROM
+        metal_bands
+    WHERE
+        style LIKE '%Glam rock%';
 
--- Selects the band name and calculates the lifespan for Glam rock bands
-SELECT
-    band_name,
-    -- Uses DATEDIFF to calculate the difference in days between the end year
-    -- (or 2022 if the band is still active) and the formed year
-    -- If the band has a split year, it uses the split year; otherwise, it uses the end of 2022
-    ROUND(DATEDIFF(IFNULL(split, '2022-01-01'), CONCAT(formed, '-01-01')) / 365, 2) AS lifespan
-FROM
-    metal_bands
-WHERE
-    style LIKE '%Glam rock%' -- Filters bands that have the style containing 'Glam rock'
--- Orders the result set by the calculated lifespan in descending order
-ORDER BY
-    lifespan DESC;
+-- List all bands with Glam rock as their main style, ranked by their longevity
+SELECT band_name, lifespan
+FROM temp_band_lifespan
+ORDER BY lifespan DESC;

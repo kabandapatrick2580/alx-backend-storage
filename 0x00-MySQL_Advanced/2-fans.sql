@@ -1,7 +1,10 @@
--- SQL script to rank bands by country of origin based on the number of unique fans
+-- Create a temporary table to store aggregated fan counts per origin
+CREATE TEMPORARY TABLE IF NOT EXISTS temp_origin_fans AS
+    SELECT origin, SUM(fans) AS nb_fans
+    FROM metal_bands
+    GROUP BY origin;
 
--- Select the country of origin and calculate the total number of fans for each country
-SELECT origin, SUM(fans) AS num_fans
-FROM metal_bands
-GROUP BY origin -- Group the bands by their country of origin
-ORDER BY num_fans DESC; -- Order the results by the total number of fans in descending order
+-- Rank country origins of bands by the total number of (non-unique) fans
+SELECT origin, nb_fans
+FROM temp_origin_fans
+ORDER BY nb_fans DESC;
