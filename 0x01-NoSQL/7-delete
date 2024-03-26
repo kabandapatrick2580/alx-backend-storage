@@ -1,8 +1,14 @@
+// Check if the database name argument is provided
+if (arguments.length < 1) {
+    print("Error: Database name argument is missing.");
+    quit(1);
+}
+
 // Get the database name passed as an argument
 var dbName = arguments[0];
 
 // Switch to the specified database
-use dbName
+use dbName;
 
 // Delete all documents with name="Holberton school" in the school collection
 db.school.deleteMany({ "name": "Holberton school" });

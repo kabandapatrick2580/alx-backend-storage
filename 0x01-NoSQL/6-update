@@ -5,8 +5,7 @@ var dbName = arguments[0];
 use dbName
 
 // Update documents in the school collection
-db.school.update(
+db.school.updateMany(
     { name: "Holberton school" },
-    { $set: { address: "972 Mission street" } },
-    { multi: true }
+    { $set: { address: "972 Mission street" } }
 );
