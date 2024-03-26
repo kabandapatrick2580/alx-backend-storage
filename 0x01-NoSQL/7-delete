@@ -1,0 +1,8 @@
+// Get the database name passed as an argument
+var dbName = arguments[0];
+
+// Switch to the specified database
+use dbName
+
+// Delete all documents with name="Holberton school" in the school collection
+db.school.deleteMany({ "name": "Holberton school" });

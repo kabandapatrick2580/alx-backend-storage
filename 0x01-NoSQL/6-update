@@ -1,0 +1,12 @@
+// Get the database name passed as an argument
+var dbName = arguments[0];
+
+// Switch to the specified database
+use dbName
+
+// Update documents in the school collection
+db.school.update(
+    { name: "Holberton school" },
+    { $set: { address: "972 Mission street" } },
+    { multi: true }
+);
