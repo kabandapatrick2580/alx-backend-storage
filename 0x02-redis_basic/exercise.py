@@ -9,7 +9,7 @@ class Cache:
     """
     A class representing a cache interface using Redis.
 
-    This class provides methods to interact with a Redis cache, 
+    This class provides methods to interact with a Redis cache,
     including storing data and retrieving it using random keys.
     """
 
@@ -17,7 +17,7 @@ class Cache:
         """
         Initialize a new Cache instance.
 
-        This method creates a Redis client and flushes 
+        This method creates a Redis client and flushes
         the Redis database to ensure a clean cache.
         """
         self._redis: redis.Redis = redis.Redis()
@@ -27,12 +27,12 @@ class Cache:
         """
         Store data in the Redis cache.
 
-        This method generates a random key using UUID, stores 
+        This method generates a random key using UUID, stores
         the input data in Redis using the generated key,
         and returns the key for future retrieval.
 
         Args:
-            data: The data to be stored in the cache. 
+            data: The data to be stored in the cache.
             It can be a string, bytes, integer, or float.
 
         Returns:
