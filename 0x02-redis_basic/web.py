@@ -49,3 +49,13 @@ def get_page(url: str) -> str:
     """
     response = requests.get(url)
     return response.text
+
+
+# Example usage:
+if __name__ == "__main__":
+    # Simulate a slow response
+    url = "http://slowwly.robertomurray.co.uk"
+    print(get_page(url))
+
+    # Example of accessing the same URL again (should be cached)
+    print(get_page(url))
